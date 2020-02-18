@@ -16,7 +16,11 @@ from Components.Sources.StaticText import StaticText
 from Plugins.Plugin import PluginDescriptor
 from Tools.Directories import resolveFilename, SCOPE_LANGUAGE, SCOPE_PLUGINS
 from os import environ
-from enigma import getDesktop, getBoxType
+from enigma import getDesktop
+try:
+    from enigma import getBoxType           # for OpenPLi and similar
+except ImportError:
+    from boxbranding import getBoxType      # for OpenATV and similar
 
 lang = language.getLanguage()
 environ["LANGUAGE"] = lang[:2]
